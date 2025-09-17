@@ -1,0 +1,17 @@
+---
+- name: Add users
+  connection: ansible.netcommon.netconf
+  hosts: vsrx
+  gather_facts: no
+  vars:
+          removeusers:
+                  - test
+
+  tasks:
+
+          - name: Remove inactive users
+            junipernetworks.junos.junos_user:
+                    name: "{{item}}"
+                    state: absent
+            loop: "{{removeusers}}"
+

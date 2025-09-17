@@ -1,0 +1,11 @@
+---
+- name: Enable netconf 
+  hosts: vsrx
+  connection: ansible.netcommon.network_cli
+  gather_facts: no
+
+  tasks:
+          - name: Enable netconf
+            junipernetworks.junos.junos_netconf:
+                    listens_on: 830
+                    state: present

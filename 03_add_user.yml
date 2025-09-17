@@ -1,0 +1,16 @@
+---
+- name: Add users
+  connection: ansible.netcommon.netconf
+  hosts: vsrx
+  gather_facts: no
+
+  tasks:
+
+          - name: Add active users
+            junipernetworks.junos.junos_user:
+                    name: "{{item.login}}"
+                    role: "{{item.role}}"
+                    sshkey: "{{item.sshkey}}"
+                    state: present
+            loop: "{{newusers}}"
+

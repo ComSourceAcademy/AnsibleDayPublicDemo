@@ -1,0 +1,10 @@
+---
+- name: Enable netconf 
+  hosts: vsrx
+  connection: local
+  gather_facts: no
+
+  tasks:
+          - name: Ping devices
+            ansible.builtin.ping:
+

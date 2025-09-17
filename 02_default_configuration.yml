@@ -1,0 +1,25 @@
+---
+- name: Create default configuration
+  connection: ansible.netcommon.netconf
+  hosts: vsrx
+  gather_facts: no
+
+  tasks:
+          - name: Set domain name, hostname and name servers
+            junipernetworks.junos.junos_system:
+              domain_name: ansibleday.comsource.cz
+              name_servers: "{{ dns }}"
+
+
+          - name: Set NTP servers
+            junipernetworks.junos.junos_config:
+              lines:
+                - set system ntp server {{ item }}
+              update: merge
+            loop: "{{ntp}}"
+
+          - name: Set system timezone
+            junipernetworks.junos.junos_config:
+               lines: 
+                 - set system time-zone "Europe/Prague"
+               update: merge

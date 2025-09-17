@@ -8,9 +8,8 @@
 
           - name: Add active users
             junipernetworks.junos.junos_user:
-                    name: "{{item.login}}"
-                    role: "{{item.role}}"
-                    sshkey: "{{item.sshkey}}"
+                    name: "{{login}}"
+                    role: "{{role}}"
+                    sshkey: "{{sshkey}}"
                     state: present
-            loop: "{{newusers}}"
 

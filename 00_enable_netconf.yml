@@ -7,5 +7,5 @@
   tasks:
           - name: Enable netconf
             junipernetworks.junos.junos_netconf:
-                    listens_on: 830
+                    netconf_port: 830
                     state: present
